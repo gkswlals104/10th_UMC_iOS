@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "dolbyCinemaImg.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

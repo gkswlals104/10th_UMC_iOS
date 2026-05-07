@@ -14,12 +14,6 @@ struct MegaBoxApp: App {
     var body: some Scene {
         WindowGroup {
             LoginView()
-                // ⭐️ 추가: 카카오톡에서 로그인을 마치고 다시 우리 앱으로 돌아올 때 처리하는 코드입니다.
-                .onOpenURL { url in
-                    if (AuthApi.isKakaoTalkLoginUrl(url)) {
-                        _ = AuthController.handleOpenUrl(url: url)
-                    }
-                }
         }
     }
 }

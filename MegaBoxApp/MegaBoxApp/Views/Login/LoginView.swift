@@ -69,11 +69,12 @@ struct LoginView: View {
     //MARK: 로그인 버튼
         private var buttonGroup: some View {
             Button {
-                // ⭐️ AppStorage 대신 키체인에 저장!
+                //MARK: 키체인에 저장
                 KeychainService.shared.savePasswordToKeychain(account: "myLoginID", service: "com.myApp.login", password: viewModel.loginModel.id)
                 KeychainService.shared.savePasswordToKeychain(account: "myLoginPW", service: "com.myApp.login", password: viewModel.loginModel.pwd)
                 
                 isLoginSuccess = true // 저장 후 화면 이동
+                
             } label: {
                 Text("로그인")
                     .font(.pretendard(.bold, size: 18))
@@ -100,10 +101,11 @@ struct LoginView: View {
             
             Spacer()
             Button {
-                            // 카카오 로그인 로직 실행
-                            kakaoLogin()
-                        } label: {
-                            Image("kakao")
+            // 카카오 로그인 로직 실행
+            kakaoLogin()
+                        }
+            label: {
+            Image("kakao")
                         }
             
             Spacer()
@@ -120,8 +122,8 @@ struct LoginView: View {
             .aspectRatio(contentMode: .fit)
             .frame(maxWidth: .infinity)
     }
-    
-        // ⭐️ 카카오 로그인을 실행하는 함수입니다.
+
+    //MARK: 카카오 로그인
     private func kakaoLogin() {
         if (UserApi.isKakaoTalkLoginAvailable()) {
             UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
@@ -132,9 +134,9 @@ struct LoginView: View {
                     print("카카오톡 앱 로그인 성공!")
                     if let accessToken = oauthToken?.accessToken {
                         print("받아온 토큰: \(accessToken)")
-                        // 과제 조건: 토큰 정보를 키체인에 저장!
+                        //MARK: 토큰 정보 키체인에 저장
                         KeychainService.shared.savePasswordToKeychain(account: "kakaoToken", service: "com.myApp.login", password: accessToken)
-                        // isLoginSuccess = true // 원하시면 로그인 성공 처리
+                        isLoginSuccess = true
                     }
                 }
             }
@@ -147,9 +149,9 @@ struct LoginView: View {
                     print("카카오 웹 로그인 성공!")
                     if let accessToken = oauthToken?.accessToken {
                         print("받아온 토큰: \(accessToken)")
-                        // 과제 조건: 토큰 정보를 키체인에 저장!
+                        //MARK: 토큰 정보 키체인에 저장
                         KeychainService.shared.savePasswordToKeychain(account: "kakaoToken", service: "com.myApp.login", password: accessToken)
-                        // isLoginSuccess = true // 원하시면 로그인 성공 처리
+                        isLoginSuccess = true
                     }
                 }
             }

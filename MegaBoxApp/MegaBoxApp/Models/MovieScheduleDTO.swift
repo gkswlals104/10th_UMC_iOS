@@ -21,7 +21,7 @@ struct MovieDTO: Codable {
     
     enum CodingKeys: String, CodingKey {
         case id, title, schedules
-        case ageRating = "age_rating" // ⭐️ 여기서 매핑해줍니다!
+        case ageRating = "age_rating" //여기서 매핑
     }
 }
 

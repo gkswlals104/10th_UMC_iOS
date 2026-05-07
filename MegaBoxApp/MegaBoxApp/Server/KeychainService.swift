@@ -8,13 +8,14 @@
 import Foundation
 import Security
 
-// 개념 설명 문서에 있던 비밀번호 관리용 싱글톤 클래스
+// 비밀번호 관리 싱글톤 클래스
 class KeychainService {
     
     static let shared = KeychainService()
     private init() {}
     
-    /// Keychain에 사용자의 비밀번호를 저장합니다.
+
+//MARK: 키체인에 사용자 비밀번호 저장
     @discardableResult
     func savePasswordToKeychain(account: String, service: String, password: String) -> OSStatus {
         guard let passwordData = password.data(using: .utf8) else {
@@ -34,7 +35,7 @@ class KeychainService {
         return status
     }
 
-    /// Keychain에서 저장된 데이터를 불러옵니다.
+//MARK: 키체인에서 저장된 데이터 불러오기
     @discardableResult
     func load(account: String, service: String) -> String? {
         let query: [String: Any] = [
@@ -60,7 +61,8 @@ class KeychainService {
         return result
     }
     
-    /// Keychain에서 항목을 삭제합니다.
+
+//MARK: 키체인에서 항목 삭제
     @discardableResult
     func delete(account: String, service: String) -> OSStatus {
         let query: [String: Any] = [

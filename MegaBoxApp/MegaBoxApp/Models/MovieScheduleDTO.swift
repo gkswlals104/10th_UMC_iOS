@@ -1,18 +1,18 @@
 import Foundation
 
-// 1. 가장 바깥쪽 껍데기
+//MARK: 1. 가장 바깥쪽 틀?
 struct MovieScheduleResponseDTO: Codable {
     let status: String
     let message: String
     let data: MovieDataDTO
 }
 
-// 2. data 안의 내용
+//MARK: 2. data 내용
 struct MovieDataDTO: Codable {
     let movies: [MovieDTO]
 }
 
-// 3. 개별 영화 정보
+//MARK: 3. 영화 정보
 struct MovieDTO: Codable {
     let id: String
     let title: String
@@ -21,30 +21,30 @@ struct MovieDTO: Codable {
     
     enum CodingKeys: String, CodingKey {
         case id, title, schedules
-        case ageRating = "age_rating" // ⭐️ 여기서 매핑해줍니다!
+        case ageRating = "age_rating"
     }
 }
 
-// 4. 날짜별 스케줄
+//MARK: 4. 날짜별 스케줄
 struct ScheduleDTO: Codable {
     let date: String
     let areas: [AreaDTO]
 }
 
-// 5. 지역 정보 (강남, 홍대 등)
+//MARK: 5. 지역 정보
 struct AreaDTO: Codable {
     let area: String
     let items: [ItemDTO]
 }
 
-// 6. 상영관 정보 (크리클라이너 1관, 2D 등)
+//MARK: 6. 상영관 정보
 struct ItemDTO: Codable {
     let auditorium: String
     let format: String
     let showtimes: [ShowtimeDTO]
 }
 
-// 7. 가장 안쪽: 실제 상영 시간 및 좌석 정보
+//MARK: 7. 실제 상영 시간 및 좌석 정보
 struct ShowtimeDTO: Codable {
     let start: String
     let end: String

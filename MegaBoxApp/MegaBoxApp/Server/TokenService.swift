@@ -8,22 +8,19 @@
 import Foundation
 import Security
 
-// 1. 토큰 정보를 담을 그릇 (배운 개념)
 struct TokenInfo: Codable {
     let accessToken: String
     let refreshToken: String?
 }
 
-// 2. 키체인을 관리하는 서비스 (배운 개념)
 class TokenService {
     static let shared = TokenService()
     private init() {}
     
-    // 이 부분은 본인의 앱 이름에 맞게 나중에 수정해도 됩니다. 일단 그대로 두세요!
     private let account = "authToken"
     private let service = "com.myApp.tokenInfo"
     
-    // 토큰 저장하기
+    // 토큰 저장
     @discardableResult
     func saveTokenInfo(_ tokenInfo: TokenInfo) -> OSStatus {
         do {
@@ -64,7 +61,7 @@ class TokenService {
         }
     }
     
-    // 토큰 삭제하기
+    // 토큰 삭제
     @discardableResult
     func deleteTokenInfo() -> OSStatus {
         let query: [String: Any] = [
